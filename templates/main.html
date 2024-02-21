@@ -1,0 +1,197 @@
+<html>
+  <head>
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=https://code.jquery.com/jquery-3.3.1.min.js crossorigin="anonymous"></script>
+    <script src="../static/main.js"></script>
+  
+    <script>let post_data = {{post_data|tojson}};</script>
+    <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+    <style>
+      .main{
+        margin-top: 50px;
+        background-color: black;
+      }.feed{
+        border-color: #77797a;
+        border-style: solid;
+        border-width: 1px;
+        background-color:black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }.report-incident{
+        margin-top: 20px;
+        background-color: rgb(0, 0, 0);
+        display: flex;
+        width: 700px;;
+        border-radius: 5px;
+        border-style: solid;
+        border-color: rgb(127, 126, 126);
+        border-width: 1px;
+      }.container-for-posts{
+        margin-top: 20px;
+        width: 600px
+      }.profile-pic{
+        height: 50px;
+        border-radius: 50%;
+      }.post-incident{
+        color: rgb(122, 119, 119);
+        border-radius: 10px;
+        width: 450px;
+
+      }.post{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        margin-top: 10px;
+        padding: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color:rgb(118, 117, 117);
+        border-radius: 10px;
+      }.location{
+        font-size: 15px;
+        font-weight: bold;
+      }.username{
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+      }.title{
+        font-size: 25px;
+        font-weight: bold;
+      }.desctiption{
+        font-size: 15px;
+      }.twitter-input {
+      margin-top: 5px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background-color: black;
+      color: white;
+      width: 380px;
+      min-height: 60px;
+      word-wrap: break-word; 
+      white-space: pre-wrap;
+      border-style: solid;
+      border-width: 1px;
+      border-color:rgb(161, 157, 157);
+      border-radius: 10px;
+    }.profile-pic-container{
+        vertical-align: top;
+    }.post-button
+    {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 35px;
+      vertical-align: top;
+      background-color: rgb(3, 187, 187);
+      border-radius: 20px;
+      margin-left: 10px;
+      font-size: 16px;
+      color: white;
+      font-weight: bold;
+      margin-top: 10px;
+    }.twitter-input:empty::before {
+      content: "Type here...";
+      color: rgb(237, 225, 225);
+      font-style: italic;
+      top: 50%;
+      left: 8px;
+    }.title-input{
+      margin-top: 5px;
+      padding-top: 5px;
+      background-color: black;
+      color: white;
+      width: 380px;
+      min-height: 35px;
+      word-wrap: break-word; 
+      white-space: pre-wrap;
+      border-style: solid;
+      border-width: 1px;
+      border-color:rgb(161, 157, 157);
+      border-radius: 10px;
+    }.title-input:empty::before {
+      content: "Title";
+      color: rgb(237, 225, 225);
+      font-style: italic;
+      top: 50%;
+      left: 8px;
+    }.location-input{
+      margin-top: 5px;
+      padding-top: 5px;
+      background-color: black;
+      color: white;
+      width: 380px;
+      min-height: 35px;
+      word-wrap: break-word; 
+      white-space: pre-wrap;
+      border-style: solid;
+      border-width: 1px;
+      border-color:rgb(161, 157, 157);
+      border-radius: 10px;
+    }.location-input:empty::before {
+      content: "Location";
+      color: rgb(237, 225, 225);
+      font-style: italic;
+      top: 50%;
+      left: 8px;
+    }.counter-title, .counter-location, .counter-text{
+      margin-left: 5px;
+      margin-top: 10px;
+      font-size: 13;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      place-items: center;
+    }.first-row {
+      display: flex;
+    }.second-row{
+      display: flex;
+    }.third-row{
+      display: flex;
+    }.red{
+      color: red;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="main row">
+      <div class="col-md-2"></div>
+      <div class="feed col-md-8 row">
+        <div class="report-incident col-md-12 row">
+          <div class="profile-pic-container col-md-2">
+          <img class="profile-pic" src="../static/profile-image/Screenshot 2024-02-12 at 4.05.34 PM.png" alt="">
+          </div>
+          <div class="post-incident col-md-10">
+              <div class="first-row">
+                <div type="text" class="title-input" contenteditable="true"></div>
+                <div class="counter-title"></div>
+             </div>
+             <div class="second-row">
+              <div type="text" class="location-input" contenteditable="true"></div>
+              <div class="counter-location"></div>
+            </div>
+            <div class="third-row">
+              <div type="text" class="twitter-input" contenteditable="true"></div>
+              <div class="counter-text"></div>
+            </div>
+            <input type="file" name="image" id="image-upload" accept="image/*">
+    
+  
+    
+        </div>
+          <div class="post-button" id="post-me" onclick="submit_post()">post</div>
+          <div></div>
+        </div>
+        <div class="container-for-posts col-md-12">
+        </div>
+
+
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    
+  </body>
+</html>
